@@ -22,11 +22,10 @@ app.use((req, res, next) => {
 
     next();
 });
-
-app.use((req, res, next) => {
-
-    res.render('maintenance.hbs');
-});
+//
+// app.use((req, res, next) => {
+//     // res.render('maintenance.hbs');
+// });
 app.use(express.static(__dirname + '/public'));
 
 hbs.registerHelper('getCurrentYear', () => {
@@ -60,6 +59,12 @@ app.get('/bad', (request, response) => {
    response.send({
        errorMessage: 'Unable to handle request'
    });
+});
+
+app.get('/projects', (request, response) => {
+    response.render('projects.hbs', {
+        pageTitle: 'Projects'
+    });
 });
 app.listen(port, () => {
     console.log('Server is up on port: ', port);
